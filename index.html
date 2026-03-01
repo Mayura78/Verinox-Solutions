@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verinox Solutions | Portfolio</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+body{
+background:#0f2027;
+color:#fff;
+transition:0.4s;
+overflow-x:hidden;
+}
+body.light{
+background:#f4f4f4;
+color:#111;
+}
+
+/* PARTICLES */
+#particles{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+overflow:hidden;
+}
+.circle{
+position:absolute;
+width:8px;
+height:8px;
+background:#00f2fe;
+border-radius:50%;
+animation:float 15s linear infinite;
+opacity:0.5;
+}
+@keyframes float{
+from{transform:translateY(100vh);}
+to{transform:translateY(-10vh);}
+}
+
+/* NAVBAR */
+nav{
+position:fixed;
+width:100%;
+top:0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#00f2fe;
+}
+nav ul{
+display:flex;
+list-style:none;
+gap:25px;
+}
+nav ul li a{
+color:white;
+text-decoration:none;
+transition:0.3s;
+}
+nav ul li a:hover{
+color:#00f2fe;
+}
+.toggle,.lang-btn{
+cursor:pointer;
+background:#00f2fe;
+padding:5px 12px;
+border-radius:20px;
+color:#000;
+font-size:13px;
+margin-left:10px;
+}
+/* MOBILE MENU */
+.menu-btn{
+display:none;
+font-size:25px;
+cursor:pointer;
+}
+.sidebar{
+position:fixed;
+top:0;
+right:-250px;
+width:250px;
+height:100%;
+background:#111;
+padding:50px 20px;
+transition:0.4s;
+z-index:999;
+}
+.sidebar a{
+display:block;
+color:white;
+margin:15px 0;
+text-decoration:none;
+}
+.sidebar.active{
+right:0;
+}
+/* SECTIONS */
+section{
+padding:120px 8%;
+}
+/* HOME */
+.home{
+display:grid;
+grid-template-columns:1fr 1fr;
+align-items:center;
+gap:40px;
+min-height:100vh;
+}
+.home-text h1{
+font-size:45px;
+}
+.home-text span{
+color:#00f2fe;
+}
+.btn{
+margin-top:20px;
+padding:10px 25px;
+border:none;
+background:#00f2fe;
+cursor:pointer;
+font-weight:bold;
+border-radius:25px;
+transition:0.3s;
+}
+.btn:hover{
+transform:scale(1.05);
+}
+.logo-box{
+display:flex;
+justify-content:center;
+}
+.logo-box img{
+width:500px;
+animation:rotate 15s linear infinite;
+}
+@keyframes rotate{
+0%{transform:rotateY(0deg);}
+100%{transform:rotateY(360deg);}
+}
+
+/* SOCIAL ICONS HOME */
+.social-home{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+.social-home a{
+color:#00f2fe;
+font-size:22px;
+transition:0.3s;
+}
+.social-home a:hover{
+color:#fff;
+}
+
+/* ABOUT */
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+.about img{
+width:100%;
+border-radius:20px;
+}
+/* COUNTER */
+.stats{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:40px;
+}
+.stat h3{
+font-size:35px;
+color:#00f2fe;
+}
+/* SERVICES */
+.services-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
+}
+.service-card{
+background:rgba(255,255,255,0.1);
+padding:30px;
+border-radius:20px;
+text-align:center;
+transition:0.5s;
+cursor:pointer;
+}
+.service-card:hover{
+transform:translateY(-10px) scale(1.05);
+background:#00f2fe;
+color:#000;
+}
+/* SKILLS */
+.skill{
+margin:20px 0;
+}
+.progress{
+background:rgba(255,255,255,0.1);
+border-radius:20px;
+overflow:hidden;
+}
+.progress-bar{
+height:10px;
+background:#00f2fe;
+width:0;
+transition:1.5s;
+}
+/* PROJECTS */
+.filter-buttons{
+text-align:center;
+margin-bottom:30px;
+}
+.filter-buttons button{
+margin:5px;
+padding:8px 15px;
+border:none;
+background:#00f2fe;
+cursor:pointer;
+border-radius:20px;
+}
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+.project{
+position:relative;
+overflow:hidden;
+border-radius:15px;
+}
+.project img{
+width:30%;
+display:block;
+transition:0.5s;
+}
+.project:hover img{
+transform:scale(1.1);
+}
+.project-info{
+position:absolute;
+bottom:0;
+background:rgba(0,0,0,0.8);
+width:40%;
+padding:15px;
+transform:translateY(100%);
+transition:0.5s;
+}
+.project:hover .project-info{
+transform:translateY(0);
+}
+/* PROJECT SOCIAL LINKS */
+.project-links{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+.project-links a{
+color:#00f2fe;
+font-size:20px;
+transition:0.3s;
+}
+.project-links a:hover{
+color:#fff;
+}
+/* SCROLL ANIMATION */
+.hidden{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+.show{
+opacity:1;
+transform:translateY(0);
+}
+/* CONTACT SECTION */
+.contact{
+margin-top:100px;
+text-align:center;
+}
+
+.contact-container{
+max-width:800px;
+margin:auto;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+transform:perspective(1000px) rotateX(5deg);
+transition:0.5s;
+}
+
+.contact-container:hover{
+transform:perspective(1000px) rotateX(0deg) scale(1.02);
+}
+
+.contact h2{
+color:#00f2fe;
+margin-bottom:30px;
+}
+
+.contact-text{
+margin-top:20px;
+color:#ccc;
+font-size:14px;
+text-align:center;
+line-height:1.6;
+}
+
+.input-group{
+position:relative;
+margin:20px 0;
+}
+
+.input-group input,
+.input-group textarea{
+width:100%;
+padding:12px;
+background:transparent;
+border:1px solid rgba(255,255,255,0.3);
+border-radius:10px;
+outline:none;
+color:#fff;
+font-size:15px;
+}
+
+.input-group label{
+position:absolute;
+top:50%;
+left:15px;
+transform:translateY(-50%);
+color:#aaa;
+pointer-events:none;
+transition:0.3s;
+background:transparent;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label,
+.input-group textarea:focus + label,
+.input-group textarea:valid + label{
+top:-10px;
+left:10px;
+font-size:12px;
+color:#00f2fe;
+background:#0f2027;
+padding:0 5px;
+}
+
+.contact button{
+margin-top:20px;
+padding:10px 30px;
+border:none;
+background:#00f2fe;
+color:#000;
+font-weight:bold;
+border-radius:25px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.contact button:hover{
+transform:scale(1.05);
+}
+
+/* ===== PREMIUM GRADIENT WAVE FOOTER ===== */
+.footer {
+    position: relative;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #e2e8f0;
+    padding: 100px 8% 30px;
+    overflow: hidden;
+}
+
+/* Animated Wave */
+.footer::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 200%;
+    height: 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    animation: waveMove 8s linear infinite;
+}
+
+@keyframes waveMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.footer h3 {
+    color: #fff;
+    margin-bottom: 18px;
+    font-size: 20px;
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Links */
+.footer a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+
+.footer a:hover {
+    color: #25D366;
+    padding-left: 6px;
+}
+
+/* Contact clickable */
+.footer-contact a {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Glowing Social Icons */
+.footer-social a {
+    display: inline-block;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: #25D366;
+    box-shadow: 0 0 15px #25D366;
+    transform: translateY(-4px);
+}
+
+/* Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+/* Tablet */
+@media(max-width:992px){
+    .footer-container{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+/* Mobile */
+@media(max-width:600px){
+    .footer{
+        padding: 80px 20px 30px;
+    }
+    .footer-container{
+        grid-template-columns: 1fr;
+        text-align:center;
+        gap:30px;
+    }
+    .footer-social a{
+        margin:0 6px;
+    }
+}
+
+/* MOBILE */
+@media(max-width:900px){
+.contact-container{
+padding:25px;
+transform:none;
+}
+}
+/* RESPONSIVE */
+@media(max-width:900px){
+.home,.about{
+grid-template-columns:1fr;
+text-align:center;
+}
+nav ul{
+display:none;
+}
+.menu-btn{
+display:block;
+}
+.logo-box img{
+width:200px;
+}
+.social-home{
+justify-content:center;
+}
+
+/* MOBILE PROJECT FIX */
+@media(max-width:900px){
+
+  .projects{
+    grid-template-columns:repeat(2, 1fr); /* row ekaka 2 card */
+    justify-content:center;
+  }
+
+  .project{
+    margin:auto;
+  }
+
+  .project img{
+    width:100%; /* image full card width */
+  }
+
+  .project-info{
+    width:100%; /* overlay full width */
+  }
+}
+}
+</style>
+
+<!-- FONT AWESOME FOR ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<nav>
+<div class="logo">Verinox Solutions</div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Service</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact Us</a></li>
+</ul>
+<div class="toggle" onclick="toggleMode()">Mode</div>
+<div class="menu-btn" onclick="openMenu()">☰</div>
+</nav>
+
+<div class="sidebar" id="sidebar">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#services">Service</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact Us</a>
+</div>
+
+<!-- HOME -->
+<section class="home hidden" id="home">
+<div class="home-text">
+<h1>Welcome! <span>Verinox Solutions</span></h1>
+<p>Professional Software, Web Designer, UI-UX Design, Graphic Designer, Video Creation & Social Media Content Editing building modern digital experiences.</p>
+<button class="btn">View Projects</button>
+
+<div class="social-home">
+<a href="https://www.facebook.com/verinoxsolutions" target="_blank"><i class="fab fa-facebook"></i></a>
+<a href="https://www.instagram.com/verinoxsolutions?igsh=MTRmMHBkZzFpZWR3eQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://www.linkedin.com/in/verinox-solutions-327ba1391?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+<a href="https://youtube.com/@programmingknowledge41?si=Xis2WQs3LtGpLSNm" target="_blank"><i class="fab fa-youtube"></i></a>
+<a href="https://wa.me/94710763750"><i class="fab fa-whatsapp"></i></a>
+<a href="https://t.me/verinoxsolutions41" target="_blank"><i class="fab fa-telegram"></i></a>
+</div>
+
+</div>
+<div class="logo-box">
+<img src="logo1.png">
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about hidden" id="about">
+<div>
+<h2 style="color:#00f2fe;">About Me</h2>
+<p>With over 4 years of professional experience, our team specializes in delivering innovative solutions in Web Design, Software Development, UI-UX Design, 
+    Graphic Design, Logo Design, Video Creation, and Social Media Content Editing.</p>
+
+    <p>We combine creativity, technical expertise, and teamwork to
+    provide exceptional digital experiences that help businesses grow and engage effectively with their audience.
+    Our collaborative approach ensures every project is handled with attention to detail and quality.</p>
+<div class="stats">
+<div class="stat">
+<h3 class="counter" data-target="38">0</h3>
+<p>Projects</p>
+</div>
+<div class="stat">
+<h3 class="counter" data-target="30">0</h3>
+<p>Clients</p>
+</div>
+<div class="stat">
+<h3 class="counter" data-target="4">0</h3>
+<p>Years Exp</p>
+</div>
+<div class="stat">
+<h3 class="counter" data-target="13">0</h3>
+<p>Employees</p>
+</div>
+</div>
+</div>
+<div>
+<img src="about.png">
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="hidden">
+<h2 style="text-align:center;color:#00f2fe;">My Services</h2>
+<div class="services-container">
+<div class="service-card">Web Development</div>
+<div class="service-card">Software Development</div>
+<div class="service-card">UI-UX Design</div>
+<div class="service-card">Graphic Design</div>
+<div class="service-card">Video Creation</div>
+<div class="service-card">Logo Design</div>
+<div class="service-card">Social Media Content Editing</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="hidden">
+<h2 style="color:#00f2fe;">My Skills</h2>
+<div class="skill">HTML<div class="progress"><div class="progress-bar" data-progress="95%"></div></div></div>
+<div class="skill">CSS<div class="progress"><div class="progress-bar" data-progress="95%"></div></div></div>
+<div class="skill">JavaScript<div class="progress"><div class="progress-bar" data-progress="85%"></div></div></div>
+<div class="skill">PHP<div class="progress"><div class="progress-bar" data-progress="100%"></div></div></div>
+<div class="skill">Python<div class="progress"><div class="progress-bar" data-progress="80%"></div></div></div>
+<div class="skill">JAVA<div class="progress"><div class="progress-bar" data-progress="90%"></div></div></div>
+<div class="skill">React JS<div class="progress"><div class="progress-bar" data-progress="60%"></div></div></div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="hidden">
+<h2 style="color:#00f2fe;text-align:center;">My Projects</h2>
+
+<div class="filter-buttons">
+<button onclick="filterProjects('all')">All</button>
+<button onclick="filterProjects('web')">Web</button>
+<button onclick="filterProjects('software')">Software</button>
+</div>
+
+<div class="projects">
+<div class="project software">
+<img src="logocr.png">
+<div class="project-info">Call Ceneter Software</div>
+</div>
+
+<div class="project web">
+<img src="tea1.png">
+<div class="project-info">Tea Factory Web Site</div>
+</div>
+
+<div class="project web">
+<img src="zoo.png">
+<div class="project-info">Zoo Management System</div>
+</div>
+
+<div class="project software">
+<img src="library.png">
+<div class="project-info">Library Management System</div>
+</div>
+
+<div class="project software">
+<img src="hospital.png">
+<div class="project-info">Hospital Management System</div>
+</div>
+
+<div class="project web">
+<img src="portfolio.png">
+<div class="project-info">Personal Portfolio</div>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact hidden">
+<h2>Contact Us</h2>
+<div class="contact-container">
+
+<form action="send_mail.php" method="POST">
+<p class="contact-text">
+We are here to help you. Feel free to contact us anytime and we will respond as soon as possible.
+</p>
+<div class="input-group">
+<input type="text" name="name" required>
+<label>Your Name</label>
+</div>
+
+<div class="input-group">
+<input type="email" name="email" required>
+<label>Your Email</label>
+</div>
+
+<div class="input-group">
+<textarea name="message" rows="4" required></textarea>
+<label>Your Message</label>
+</div>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</div>
+</section>
+<!-- ===== PREMIUM FOOTER START ===== -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <!-- Company Info -->
+        <div>
+            <h3>Verinox Solutions</h3>
+            <p>
+                We are a professional digital solutions team with 5+ years of experience 
+                in Web Design, Software Development, Graphic Design, Logo Design, 
+                Video Creation and Social Media Editing.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-contact">
+            <h3>Contact Info</h3>
+            
+            <a href="mailto:verinoxsolutions@gmail.com">
+                📧 verinoxsolutions@gmail.com
+            </a>
+
+            <a href="tel:+94710763750">
+                📞 +94 71 076 3750
+            </a>
+
+            <p>📍 Kurunegala, Sri Lanka</p>
+
+            <div class="footer-social" style="margin-top:15px;">
+                <a href="https://wa.me/94710763750"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/verinoxsolutions"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/verinoxsolutions?igsh=MTRmMHBkZzFpZWR3eQ=="><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/verinox-solutions-327ba1391?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://youtube.com/@programmingknowledge41?si=Xis2WQs3LtGpLSNm" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://t.me/verinoxsolutions41" target="_blank"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © <span id="year"></span> Verinox Solutions | All Rights Reserved
+    </div>
+</footer>
+<!-- ===== PREMIUM FOOTER END ===== -->
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+<script>
+/* DARK MODE */
+function toggleMode(){document.body.classList.toggle("light");}
+
+/* MOBILE MENU */
+function openMenu(){document.getElementById("sidebar").classList.toggle("active");}
+
+/* PARTICLES */
+for(let i=0;i<30;i++){
+let circle=document.createElement("div");
+circle.classList.add("circle");
+circle.style.left=Math.random()*100+"%";
+circle.style.animationDuration=(5+Math.random()*10)+"s";
+document.getElementById("particles").appendChild(circle);
+}
+
+/* COUNTER */
+const counters=document.querySelectorAll(".counter");
+counters.forEach(counter=>{
+counter.innerText='0';
+const update=()=>{
+const target=+counter.getAttribute("data-target");
+const c=+counter.innerText;
+const inc=target/100;
+if(c<target){counter.innerText=Math.ceil(c+inc);setTimeout(update,30);}
+else{counter.innerText=target;}
+};
+update();
+});
+
+/* SKILL ANIMATION */
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".progress-bar").forEach(bar=>{
+if(bar.getBoundingClientRect().top < window.innerHeight){
+bar.style.width=bar.getAttribute("data-progress");
+}
+});
+});
+
+/* PROJECT FILTER */
+function filterProjects(category){
+document.querySelectorAll(".project").forEach(project=>{
+project.style.display=
+category==="all"||project.classList.contains(category)
+?"block":"none";
+});
+}
+
+/* SCROLL REVEAL */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+document.querySelectorAll(".hidden").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
